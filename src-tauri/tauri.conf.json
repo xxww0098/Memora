@@ -28,7 +28,7 @@
   },
   "plugins": {
     "updater": {
-      "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IDUzMzM5OTZBODI5OTVEQ0IKUldUTFhabUNhcGt6VTk3Mk1ocWM4ZzRhOFFRYWtMR3pIZlBYSlArZTA4THkyZFNxNy9xblI2aGMK",
+      "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IDM4OUM2MjEzQjA5NTNFNkYKUldSdlBwV3dFMktjT093a2hJeGprWGw2dElmUWNMZnBhaHBROG14WTJlVTBjT2R1bk9yTWEzeGsK",
       "endpoints": ["https://github.com/xxww0098/Memora/releases/latest/download/latest.json"]
     }
   },
