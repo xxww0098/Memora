@@ -1,0 +1,273 @@
+@import "tailwindcss";
+
+/* ══════════════════════════════════════════════════════════════════════
+   MEMORA — "Digital Keepsake" Design System
+   Warm, intimate, paper-like. Not a tech product — a personal artifact.
+   ══════════════════════════════════════════════════════════════════════ */
+
+@theme {
+  /* ── Typography ── */
+  --font-display: "LXGW WenKai", "Newsreader", Georgia, "Noto Serif SC", serif;
+  --font-body: "LXGW WenKai", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", system-ui, sans-serif;
+
+  /* ── Warm Cream Palette (OKLCH) ── */
+  --color-cream-50: oklch(98.5% 0.008 75);
+  --color-cream-100: oklch(96.8% 0.012 72);
+  --color-cream-200: oklch(93% 0.018 70);
+  --color-cream-300: oklch(88% 0.022 68);
+
+  /* ── Warm Brown Neutrals ── */
+  --color-earth-400: oklch(62% 0.025 55);
+  --color-earth-500: oklch(50% 0.03 52);
+  --color-earth-600: oklch(40% 0.028 50);
+  --color-earth-700: oklch(32% 0.025 48);
+  --color-earth-800: oklch(24% 0.02 45);
+  --color-earth-900: oklch(18% 0.015 42);
+
+  /* ── Rose Accent ── */
+  --color-rose-300: oklch(78% 0.08 12);
+  --color-rose-400: oklch(70% 0.12 12);
+  --color-rose-500: oklch(62% 0.15 12);
+  --color-rose-600: oklch(52% 0.16 12);
+
+  /* ── Sage Green (Success) ── */
+  --color-sage-400: oklch(72% 0.08 148);
+  --color-sage-500: oklch(62% 0.1 148);
+
+  /* ── Amber (Warning) ── */
+  --color-amber-400: oklch(78% 0.12 75);
+  --color-amber-500: oklch(70% 0.14 75);
+
+  /* ── Coral (Error/Danger) ── */
+  --color-coral-400: oklch(68% 0.12 25);
+  --color-coral-500: oklch(58% 0.15 25);
+
+  /* ── Lavender (Subtle) ── */
+  --color-lavender-300: oklch(82% 0.06 290);
+  --color-lavender-400: oklch(72% 0.08 290);
+
+  /* ── Spacing Scale (4pt base) ── */
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+  --spacing-2xl: 48px;
+  --spacing-3xl: 64px;
+  --spacing-4xl: 96px;
+
+  /* ── Motion ── */
+  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --duration-fast: 120ms;
+  --duration-normal: 250ms;
+  --duration-slow: 400ms;
+  --duration-reveal: 600ms;
+
+  /* ── Shadows (warm tinted) ── */
+  --shadow-sm: 0 1px 3px oklch(30% 0.02 50 / 0.08);
+  --shadow-md: 0 4px 12px oklch(30% 0.02 50 / 0.1);
+  --shadow-lg: 0 8px 24px oklch(30% 0.02 50 / 0.12);
+
+  /* ── Border Radius ── */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-full: 9999px;
+}
+
+/* ══════════════════════════════════════════════════════════════════════
+   Global Reset & Base
+   ══════════════════════════════════════════════════════════════════════ */
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  font-kerning: normal;
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--color-cream-50);
+  color: var(--color-earth-800);
+  line-height: 1.7;
+  letter-spacing: 0.01em;
+  overflow: hidden;
+  min-height: 100vh;
+  /* Subtle paper texture via CSS */
+  background-image:
+    radial-gradient(ellipse at 20% 50%, oklch(97% 0.015 68 / 0.5) 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 20%, oklch(96% 0.01 290 / 0.3) 0%, transparent 50%);
+}
+
+#root {
+  height: 100vh;
+  display: flex;
+  overflow: hidden;
+}
+
+/* ── Selection ── */
+::selection {
+  background: var(--color-rose-300);
+  color: var(--color-earth-900);
+}
+
+/* ── Scrollbar (webkit) ── */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-cream-300);
+  border-radius: var(--radius-full);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-earth-400);
+}
+
+/* ══════════════════════════════════════════════════════════════════════
+   Focus
+   ══════════════════════════════════════════════════════════════════════ */
+
+:focus {
+  outline: none;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-rose-400);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
+/* ══════════════════════════════════════════════════════════════════════
+   Utility Classes
+   ══════════════════════════════════════════════════════════════════════ */
+
+.text-display {
+  font-family: var(--font-display);
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+
+.text-hero {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw + 0.5rem, 3.5rem);
+  font-weight: 300;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+.text-heading {
+  font-family: var(--font-display);
+  font-size: clamp(1.25rem, 2vw + 0.25rem, 1.75rem);
+  font-weight: 400;
+  line-height: 1.35;
+}
+
+.text-subheading {
+  font-size: 1.05rem;
+  font-weight: 500;
+  line-height: 1.5;
+  color: var(--color-earth-600);
+}
+
+.text-caption {
+  font-size: 0.8rem;
+  color: var(--color-earth-500);
+  line-height: 1.5;
+}
+
+.text-muted {
+  color: var(--color-earth-500);
+}
+
+/* ══════════════════════════════════════════════════════════════════════
+   Animations
+   ══════════════════════════════════════════════════════════════════════ */
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes pulse-soft {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 0.8; }
+}
+
+@keyframes typing-dot {
+  0%, 60%, 100% { opacity: 0.3; transform: translateY(0); }
+  30% { opacity: 1; transform: translateY(-3px); }
+}
+
+.animate-fade-in {
+  animation: fade-in var(--duration-normal) var(--ease-out-quart) both;
+}
+
+.animate-slide-up {
+  animation: slide-up var(--duration-slow) var(--ease-out-expo) both;
+}
+
+.animate-scale-in {
+  animation: scale-in var(--duration-normal) var(--ease-out-quart) both;
+}
+
+/* Staggered children */
+.stagger-children > * {
+  animation: slide-up var(--duration-slow) var(--ease-out-expo) both;
+}
+.stagger-children > *:nth-child(1) { animation-delay: 0ms; }
+.stagger-children > *:nth-child(2) { animation-delay: 60ms; }
+.stagger-children > *:nth-child(3) { animation-delay: 120ms; }
+.stagger-children > *:nth-child(4) { animation-delay: 180ms; }
+.stagger-children > *:nth-child(5) { animation-delay: 240ms; }
+.stagger-children > *:nth-child(6) { animation-delay: 300ms; }
+
+/* ══════════════════════════════════════════════════════════════════════
+   Reduced Motion
+   ══════════════════════════════════════════════════════════════════════ */
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
