@@ -5,6 +5,13 @@ import ReactDOM from "react-dom/client";
 import { router } from "./router";
 import "./index.css";
 
+// Apply theme before first paint to prevent FOUC
+(() => {
+  const stored = localStorage.getItem("memora_theme") || "system";
+  const isDark = stored === "dark" || (stored === "system" && window.matchMedia("(prefers-color-scheme: dark)").matches);
+  if (isDark) document.documentElement.classList.add("dark");
+})();
+
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {

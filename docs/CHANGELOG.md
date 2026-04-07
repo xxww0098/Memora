@@ -5,6 +5,11 @@ Format follows [Keep a Changelog](https://keepachangelog.com/).
 
 ## [Unreleased]
 
+## [0.0.3] - 2026-04-07
+
+### Added
+- Windows 版本支持
+
 ## [0.0.2] - 2026-04-07
 
 ### Added

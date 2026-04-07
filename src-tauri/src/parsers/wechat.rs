@@ -21,9 +21,11 @@ pub fn parse_txt_content(text: &str) -> Result<ParsedContent> {
     let mut current_sender = String::new();
     let mut current_timestamp = String::new();
     let mut current_content = String::new();
+    let mut header_found = false;
 
     for line in text.lines() {
         if let Some(caps) = MSG_HEADER.captures(line) {
+            header_found = true;
             // Save previous message
             if !current_content.is_empty() {
                 let is_me = is_self_sender(&current_sender);
@@ -43,6 +45,18 @@ pub fn parse_txt_content(text: &str) -> Result<ParsedContent> {
             }
             current_content.push_str(line.trim());
         }
+    }
+
+    // If no WeChat-format header was matched, return empty so the caller
+    // can fall back to generic line-by-line parsing instead of lumping
+    // everything into one message.
+    if !header_found {
+        return Ok(ParsedContent {
+            source: "wechat_txt".to_string(),
+            target_name: None,
+            messages: Vec::new(),
+            message_count: 0,
+        });
     }
 
     // Last message

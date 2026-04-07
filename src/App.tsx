@@ -2,10 +2,12 @@ import { useEffect, useState } from "react";
 import { Outlet, useNavigate } from "@tanstack/react-router";
 import { Toaster } from "sonner";
 import { getSettings, listPersonas } from "@/lib/tauri";
+import { useTheme } from "@/hooks/useTheme";
 
 export default function App() {
   const navigate = useNavigate();
   const [ready, setReady] = useState(false);
+  const { resolved } = useTheme();
 
   useEffect(() => {
     (async () => {
@@ -42,6 +44,7 @@ export default function App() {
     <>
       <Toaster
         position="top-center"
+        theme={resolved}
         toastOptions={{
           style: {
             background: "var(--color-cream-100)",
@@ -55,3 +58,4 @@ export default function App() {
     </>
   );
 }
+

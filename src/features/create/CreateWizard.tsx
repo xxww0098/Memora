@@ -56,7 +56,7 @@ export function CreateWizard() {
       const selected = await open({
         multiple: true,
         filters: [
-          { name: "聊天记录", extensions: ["txt", "html", "htm", "csv", "json"] },
+          { name: "聊天记录", extensions: ["txt", "html", "htm", "csv", "json", "db"] },
           { name: "所有文件", extensions: ["*"] },
         ],
       });
@@ -252,7 +252,7 @@ export function CreateWizard() {
               <button type="button" onClick={handleFileImport} disabled={parsing} style={{...styles.fileDropBtn, flex: 1}}>
                 <FileUp size={24} style={{ color: "var(--color-rose-400)" }} />
                 <span style={{ fontWeight: 500 }}>选择聊天文件</span>
-                <span className="text-caption">.txt / .html 等</span>
+                <span className="text-caption">.txt / .html / .db 等</span>
               </button>
 
               <button type="button" onClick={handleCapture} disabled={parsing} style={{...styles.fileDropBtn, flex: 1}}>

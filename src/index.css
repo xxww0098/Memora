@@ -77,6 +77,80 @@
   --radius-lg: 16px;
   --radius-xl: 24px;
   --radius-full: 9999px;
+
+  /* ── Chat Bubble — WeChat light style ── */
+  --chat-bg: #EDEDED;
+  --chat-bubble-user: #95EC69;                    /* WeChat green */
+  --chat-bubble-user-text: #1A1A1A;
+  --chat-bubble-other: #FFFFFF;
+  --chat-bubble-other-text: #1A1A1A;
+  --chat-input-bg: #FFFFFF;
+  --chat-input-border: #E0E0E0;
+  --chat-timestamp-bg: #DADADA;
+  --chat-timestamp-text: #888888;
+}
+
+/* ══════════════════════════════════════════════════════════════════════
+   Dark Mode — "Midnight Keepsake"
+   Warm dark tones. Still intimate, still personal — just gentler on the eyes.
+   ══════════════════════════════════════════════════════════════════════ */
+
+html.dark {
+  color-scheme: dark;
+
+  /* ── Warm Dark Surface Palette ── */
+  --color-cream-50:  oklch(16% 0.01 60);
+  --color-cream-100: oklch(20% 0.012 58);
+  --color-cream-200: oklch(26% 0.015 55);
+  --color-cream-300: oklch(32% 0.018 52);
+
+  /* ── Text on Dark ── */
+  --color-earth-400: oklch(55% 0.02 55);
+  --color-earth-500: oklch(62% 0.02 52);
+  --color-earth-600: oklch(72% 0.018 50);
+  --color-earth-700: oklch(80% 0.015 48);
+  --color-earth-800: oklch(90% 0.01 45);
+  --color-earth-900: oklch(95% 0.008 42);
+
+  /* ── Rose Accent (slightly more muted for dark bg) ── */
+  --color-rose-300: oklch(72% 0.08 12);
+  --color-rose-400: oklch(64% 0.12 12);
+  --color-rose-500: oklch(58% 0.14 12);
+  --color-rose-600: oklch(50% 0.15 12);
+
+  /* ── Sage Green ── */
+  --color-sage-400: oklch(65% 0.08 148);
+  --color-sage-500: oklch(58% 0.1 148);
+
+  /* ── Amber ── */
+  --color-amber-400: oklch(72% 0.12 75);
+  --color-amber-500: oklch(65% 0.14 75);
+
+  /* ── Coral ── */
+  --color-coral-400: oklch(62% 0.12 25);
+  --color-coral-500: oklch(55% 0.14 25);
+
+  /* ── Lavender ── */
+  --color-lavender-300: oklch(65% 0.06 290);
+  --color-lavender-400: oklch(58% 0.08 290);
+  --color-lavender-500: oklch(52% 0.12 290);
+  --color-lavender-600: oklch(45% 0.14 290);
+
+  /* ── Shadows for dark (darker, more spread) ── */
+  --shadow-sm: 0 1px 3px oklch(5% 0.01 50 / 0.3);
+  --shadow-md: 0 4px 12px oklch(5% 0.01 50 / 0.35);
+  --shadow-lg: 0 8px 24px oklch(5% 0.01 50 / 0.4);
+
+  /* ── Chat Bubble — WeChat dark style ── */
+  --chat-bg: #111111;
+  --chat-bubble-user: #3EB575;                    /* WeChat dark green */
+  --chat-bubble-user-text: #F0F0F0;
+  --chat-bubble-other: #2C2C2C;
+  --chat-bubble-other-text: #E0E0E0;
+  --chat-input-bg: #1E1E1E;
+  --chat-input-border: #333333;
+  --chat-timestamp-bg: transparent;
+  --chat-timestamp-text: #666666;
 }
 
 /* ══════════════════════════════════════════════════════════════════════
@@ -111,6 +185,13 @@ body {
   background-image:
     radial-gradient(ellipse at 20% 50%, oklch(97% 0.015 68 / 0.5) 0%, transparent 60%),
     radial-gradient(ellipse at 80% 20%, oklch(96% 0.01 290 / 0.3) 0%, transparent 50%);
+  transition: background-color var(--duration-normal), color var(--duration-normal);
+}
+
+html.dark body {
+  background-image:
+    radial-gradient(ellipse at 20% 50%, oklch(20% 0.015 60 / 0.4) 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 20%, oklch(18% 0.02 290 / 0.25) 0%, transparent 50%);
 }
 
 #root {
@@ -138,6 +219,7 @@ body {
 ::-webkit-scrollbar-thumb {
   background: var(--color-cream-300);
   border-radius: var(--radius-full);
+  transition: background var(--duration-fast);
 }
 
 ::-webkit-scrollbar-thumb:hover {

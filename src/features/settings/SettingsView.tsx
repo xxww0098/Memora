@@ -6,13 +6,16 @@ import { saveSettings, validateApiKey, getSettings, getTtsSettings, saveTtsSetti
 import type { TtsProviderInfo, UpdateCheckResult } from "@/types";
 import { listen } from "@tauri-apps/api/event";
 import { toast } from "sonner";
-import { ArrowLeft, Trash2 } from "lucide-react";
+import { ArrowLeft, Trash2, Sun, Moon, Monitor } from "lucide-react";
+import { useTheme } from "@/hooks/useTheme";
+import type { ThemeMode } from "@/hooks/useTheme";
 
 const DUMMY_KEY = "•".repeat(64);
 
 export function SettingsView() {
   const navigate = useNavigate();
   const onBack = () => navigate({ to: "/" });
+  const { mode, setMode } = useTheme();
   const [provider, setProvider] = useState("");
   const [activeProvider, setActiveProvider] = useState("");
   const [apiKey, setApiKey] = useState("");
@@ -219,6 +222,38 @@ export function SettingsView() {
       <main style={styles.main}>
         <div style={styles.content}>
           <h2 className="text-heading" style={{ marginBottom: 32 }}>设置</h2>
+
+          {/* ── Theme Toggle ── */}
+          <section style={styles.section}>
+            <h3 style={styles.sectionTitle}>外观</h3>
+            <div style={styles.fieldGroup}>
+              <label style={styles.fieldLabel}>主题模式</label>
+              <div style={{ display: "flex", gap: 8 }}>
+                {([
+                  { id: "system" as ThemeMode, label: "跟随系统", icon: <Monitor size={14} /> },
+                  { id: "light" as ThemeMode, label: "浅色", icon: <Sun size={14} /> },
+                  { id: "dark" as ThemeMode, label: "深色", icon: <Moon size={14} /> },
+                ] as const).map((opt) => (
+                  <button
+                    key={opt.id}
+                    type="button"
+                    onClick={() => setMode(opt.id)}
+                    style={{
+                      ...styles.chipBtn,
+                      display: "flex",
+                      alignItems: "center",
+                      gap: 6,
+                      background: mode === opt.id ? "var(--color-rose-500)" : "var(--color-cream-200)",
+                      color: mode === opt.id ? "white" : "var(--color-earth-600)",
+                    }}
+                  >
+                    {opt.icon}
+                    {opt.label}
+                  </button>
+                ))}
+              </div>
+            </div>
+          </section>
 
           <section style={styles.section}>
             <h3 style={styles.sectionTitle}>AI 服务</h3>
